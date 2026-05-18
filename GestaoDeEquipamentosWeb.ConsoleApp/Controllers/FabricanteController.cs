@@ -88,13 +88,20 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             if (fabricante == null)
                 RedirectToAction(nameof(Listar));
 
-            return View(fabricante);
+            EditarFabricanteViewModel viewModel = new(
+            id,
+            fabricante.Nome,
+            fabricante.Email,
+            fabricante.Telefone
+        );
+
+            return View(viewModel);
         }
         [HttpPost]
         [ActionName("Excluir")]
-        public ActionResult ExlcuirConfirmado(string id)
+        public ActionResult ExlcuirConfirmado(EditarFabricanteViewModel excluirVm)
         {
-            Fabricante? fabricante = repostorioFabricante.SelecionarPorId(id);
+            Fabricante? fabricante = repostorioFabricante.SelecionarPorId(excluirVm.Id);
 
             if (fabricante == null)
                 RedirectToAction(nameof(Listar));
