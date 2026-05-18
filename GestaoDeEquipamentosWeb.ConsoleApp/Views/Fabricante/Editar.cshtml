@@ -1,0 +1,29 @@
+﻿@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de Fabricante";
+
+}
+
+@model EditarFabricanteViewModel;
+
+<h1>Gestão de Equipamentos TK</h1>
+
+<h2>Editar de Fabricante</h2>
+
+<form action="/Fabricante/Editar/@Model.Id" method="post">
+    <div>
+        <label>Nome: </label><br />
+        <input type="text" name="Nome" value="@Model.Nome">
+    </div>
+    <div>
+        <label>Email: </label><br />
+        <input type="text" name="Email" value="@Model.Email">
+    </div>
+    <div>
+        <label>Telefone: </label><br />
+        <input type="" name="Telefone" value="@Model.Telefone">
+    </div>
+
+    <button type="submit">Confirmar</button>
+</form>
