@@ -37,7 +37,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
                 listarVm.Add(viewModel);
             }
 
-            return View();
+            return View(listarVm);
         }
     }
 }
