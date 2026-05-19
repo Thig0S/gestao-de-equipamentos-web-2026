@@ -1,0 +1,37 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de Equipamentos";
+
+}
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+
+@model List<ListarEquipamentosViewModel>
+
+<a class="btn-grad" href="/Equipamento/Cadastrar">Cadastrar Equipamento</a>
+
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Preço Aquisição</td>
+            <td>Data de Fabricação</td>
+            <td>Fabricante</td>
+            <td>Ações</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        #@foreach(ListarEquipamentosViewModel e in Model){
+        <tr>
+            <td>@e.Id</td>
+            <td>@e.Nome</td>
+            <td>@e.PrecoAquisicao</td>
+            <td>@e.DataFabricacao</td>
+            <td>@e.Fabricante</td>
+            <td><a href="/Fabricante/Editar/@e.Id">Editar</a></td>
+            <td><a href="/Fabricante/Excluir/@e.Id">Excluir</a></td>
+        </tr>
+    }
+</tbody>
+</table>

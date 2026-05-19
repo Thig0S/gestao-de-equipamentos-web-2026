@@ -1,0 +1,9 @@
+namespace GestaoDeEquipamentosWeb.ConsoleApp.Models;
+
+public record ListarEquipamentosViewModel(
+    string Id,
+    string Nome,
+    decimal PrecoAquisicao,
+    DateTime DataFabricacao,
+    string Fabricante
+);
