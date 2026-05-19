@@ -1,0 +1,28 @@
+@using GestaoDeEquipamentosWeb.ConsoleApp.Models
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Exclusão de Equipamentos";
+}
+@model ExcluirEquipamentoViewModel
+
+<form class="formulario-action" action="/Equipamento/Excluir/@Model.Id" method="post">
+    <div>
+        <label>Nome: </label><br />
+        <input type="text" name="Nome" value="@Model.Nome" disabled>
+    </div>
+    <div>
+        <label>Preço de Aquisição: </label><br />
+        <input type="number" name="PrecoAquisicao" min="0.01" step="0.01" value="@Model.PrecoAquisicao.ToString("C2")"
+               disabled>
+    </div>
+    <div>
+        <label>Data de Fabricação: </label><br />
+        <input type="date" name="DataFabricacao" value="@Model.DataFabricacao.ToString("dd/MM/yyyy")" disabled>
+    </div>
+    <div>
+        <label>Fabricante: </label><br />
+        <input type="text" name="Fabricante" value="@Model.Fabricante" disabled>
+    </div>
+
+    <button type="submit">Confirmar</button>
+</form>

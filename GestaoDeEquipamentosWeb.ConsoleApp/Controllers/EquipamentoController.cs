@@ -86,5 +86,72 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers
             }
             return listarVms;
         }
+        [HttpGet]
+        public ActionResult Editar(string id)
+        {
+            Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(id);
+
+            if (equipamento == null)
+                return RedirectToAction(nameof(Listar));
+
+            EditarEquipamentoViewModel editarVm = new EditarEquipamentoViewModel(
+                id,
+                equipamento.Nome,
+                equipamento.PrecoAquisicao,
+                equipamento.DataFabricacao,
+                equipamento.Fabricante.Id
+            );
+            ViewBag.Fabricantes = CarregarFabricantes();
+
+            return View(editarVm);
+        }
+        [HttpPost]
+        public ActionResult Editar(EditarEquipamentoViewModel editarVm)
+        {
+            Fabricante? fabricante = repostorioFabricante.SelecionarPorId(editarVm.FabricanteId);
+
+            if (fabricante == null)
+                return RedirectToAction(nameof(Listar));
+
+            Equipamento equipamentoAtualizado = new Equipamento(
+                editarVm.Nome,
+                editarVm.PrecoAquisicao,
+                editarVm.DataFabricacao,
+                fabricante
+            );
+
+            repositorioEquipamento.Editar(editarVm.Id, equipamentoAtualizado);
+
+            return RedirectToAction(nameof(Listar));
+        }
+        [HttpGet]
+        public ActionResult Excluir(string id)
+        {
+            Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(id);
+
+            if (equipamento == null)
+                return RedirectToAction(nameof(Listar));
+
+            ExcluirEquipamentoViewModel excluirVm = new(
+                id,
+                equipamento.Nome,
+                equipamento.PrecoAquisicao,
+                equipamento.DataFabricacao,
+                equipamento.Fabricante.Nome
+            );
+
+            return View(excluirVm);
+        }
+        [HttpPost]
+        [ActionName("Excluir")]
+        public ActionResult ExcluirConfirmado(ExcluirEquipamentoViewModel excluirVm)
+        {
+            Equipamento? equipamento = repositorioEquipamento.SelecionarPorId(excluirVm.Id);
+
+            if (equipamento != null)
+                repositorioEquipamento.Excluir(equipamento);
+
+            return RedirectToAction(nameof(Listar));
+        }
     }
 }
