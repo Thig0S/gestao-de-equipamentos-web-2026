@@ -7,3 +7,26 @@ public record ListarEquipamentosViewModel(
     DateTime DataFabricacao,
     string Fabricante
 );
+
+public record CadastrarEquipamentoViewModel(
+    string Nome,
+    decimal PrecoAquisicao,
+    DateTime DataFabricacao,
+    string FabricanteId
+);
+
+public record EditarEquipamentoViewModel(
+    string Id,
+    string Nome,
+    decimal PrecoAquisicao,
+    DateTime DataFabricacao,
+    string FabricanteId
+);
+
+public record ExcluirEquipamentoViewModel(
+    string Id,
+    string Nome,
+    decimal PrecoAquisicao,
+    DateTime DataFabricacao,
+    string Fabricante
+);

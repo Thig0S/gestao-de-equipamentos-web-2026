@@ -99,7 +99,8 @@ td a{
   display: flex;
   flex-direction: column;
 }
-.formulario-action input{
+.formulario-action input,
+.formulario-action select{
   padding: 15px;
   border-radius: 20px;
   border: 1px solid black;
