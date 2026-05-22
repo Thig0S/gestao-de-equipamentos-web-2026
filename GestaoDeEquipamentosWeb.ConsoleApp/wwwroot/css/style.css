@@ -117,6 +117,12 @@ td a{
 .text-input{
   padding: 15px;
   border-radius: 20px;
-
+}
+.formulario-validacao-campo{
+  display: block;
+  margin-top: 7px;
+  color: rgb(160, 44, 74);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 

@@ -1,14 +1,12 @@
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Cadastro de Chamado";
+    ViewBag.Titulo = "Editar Chamado";
 
     List<SelectListItem> selecionarEquipamentos = ViewBag.Equipamentos;
 }
+@model EditarChamadoViewModel;
 
-@model CadastrarChamadoViewModel
-
-
-<form class="formulario-action" asp-action="Cadastrar" method="post">
+<form class="formulario-action" asp-action="Editar" asp-route-id="@Model.Id" method="post">
     <div>
         <label asp-for="Titulo">Titulo: </label><br />
         <input asp-for="Titulo" type="text">
@@ -29,4 +27,3 @@
     <button type="submit">Confirmar</button>
 
 </form>
-
