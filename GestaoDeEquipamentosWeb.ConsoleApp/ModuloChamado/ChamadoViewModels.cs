@@ -8,3 +8,8 @@ public record ListarChamadoViewModel(
     int TempoDecorrido,
     bool EstaConcluido
 );
+public record CadastrarChamadoViewModel(
+    string Titulo,
+    string? Descricao,
+    string EquipamentoId
+);

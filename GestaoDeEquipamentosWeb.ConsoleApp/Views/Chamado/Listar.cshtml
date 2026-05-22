@@ -1,12 +1,11 @@
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de Chamados";
-
 }
-
+@model List<ListarChamadoViewModel>
 <h1>Gestão de Equipamentos TK</h1>
 
-<a class="btn-grad" href="/Equipamento/Cadastrar">Cadastrar Equipamento</a>
+<a class="btn-grad" asp-action="Cadastrar">Cadastrar Chamado</a>
 
 <table>
     <thead>
@@ -17,22 +16,25 @@
             <td>Data de Abertura</td>
             <td>Tempo Decorrido</td>
             <td>Status</td>
+            <td>Ações</td>
         </tr>
     </thead>
 
     <tbody>
         @foreach (ListarChamadoViewModel e in Model)
         {
-            <tr>
-                <td>@e.Id</td>
-                <td>@e.Titulo</td>
-                <td>@e.Equipamento
-                    <td>
-                        <td>@e.TempoDecorrido</td>
-                        <td>@e.EstaConcluido</td>
-                        <td><a href="/Chamado/Editar/@e.Id">Editar</a></td>
-                        <td><a href="/Chamado/Excluir/@e.Id">Excluir</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            <td>
+                <td data-label="ID">@e.Id</td>
+                <td data-label="Titulo">@e.Titulo</td>
+                <td data-label="Equipamento">@e.Equipamento</td>
+                <td data-label="Data de Abertura">@e.DataAbertura.ToString("dd/MM/yyyy")</td>
+                <td data-label="Tempo Decorrido">@e.TempoDecorrido dias(s)</td>
+                <td data-label="Status">@(e.EstaConcluido ? "Concluido" : "Aberto")</td>
+                <td data-label="Ações">
+                    <a asp-action="Editar" asp-route-id="@e.Id">Editar</a>
+                    <a asp-action="Excluir" asp-route-id="@e.Id">Excluir</a>
+                </td>
+            </td>
+    }
+</tbody>
+</table>

@@ -58,7 +58,6 @@ nav a{
   text-decoration: none;
 }
 table{
-  
   background-blend-mode: lighten;
   width: 100%;
   border: rgba(0, 0, 0, 0.107) solid 1px;
@@ -95,7 +94,6 @@ td a{
 }
 .formulario-action div{
   width: 40%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -115,5 +113,10 @@ td a{
   color: white;
   background-color: gray;
   transition: 0.2s;
+}
+.text-input{
+  padding: 15px;
+  border-radius: 20px;
+
 }
 
