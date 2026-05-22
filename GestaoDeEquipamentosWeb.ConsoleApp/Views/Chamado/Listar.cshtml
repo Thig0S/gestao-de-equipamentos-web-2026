@@ -1,0 +1,38 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de Chamados";
+
+}
+
+<h1>Gestão de Equipamentos TK</h1>
+
+<a class="btn-grad" href="/Equipamento/Cadastrar">Cadastrar Equipamento</a>
+
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Titulo</td>
+            <td>Equipamento</td>
+            <td>Data de Abertura</td>
+            <td>Tempo Decorrido</td>
+            <td>Status</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (ListarChamadoViewModel e in Model)
+        {
+            <tr>
+                <td>@e.Id</td>
+                <td>@e.Titulo</td>
+                <td>@e.Equipamento
+                    <td>
+                        <td>@e.TempoDecorrido</td>
+                        <td>@e.EstaConcluido</td>
+                        <td><a href="/Chamado/Editar/@e.Id">Editar</a></td>
+                        <td><a href="/Chamado/Excluir/@e.Id">Excluir</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>

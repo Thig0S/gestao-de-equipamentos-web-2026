@@ -3,7 +3,6 @@
     ViewBag.Titulo = "Listagem de Equipamentos";
 
 }
-@using GestaoDeEquipamentosWeb.ConsoleApp.Models
 
 @model List<ListarEquipamentosViewModel>
 
@@ -22,7 +21,7 @@
     </thead>
 
     <tbody>
-        #@foreach(ListarEquipamentosViewModel e in Model){
+        @foreach(ListarEquipamentosViewModel e in Model){
         <tr>
             <td>@e.Id</td>
             <td>@e.Nome</td>
