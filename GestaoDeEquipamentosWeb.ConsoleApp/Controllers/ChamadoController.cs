@@ -10,7 +10,7 @@ namespace GestaoDeEquipamentosWeb.ConsoleApp.Controllers;
 
 public class ChamadoController : Controller
 {
-    private readonly IRepositorio<Chamado> repositorioChamado;
+    private readonly IRepositorioChamado repositorioChamado;
     private readonly IRepositorio<Equipamento> repositorioEquipamento;
 
     public ChamadoController()
@@ -23,9 +23,20 @@ public class ChamadoController : Controller
     }
 
     [HttpGet]
-    public ActionResult Listar()
+    public ActionResult Listar(string? status)
     {
-        List<Chamado> chamados = repositorioChamado.SelecionarTodos();
+        string? statusSelecionado = status?.ToLower();
+
+        List<Chamado> chamados;
+
+        if (statusSelecionado == "em-aberto")
+            chamados = repositorioChamado.SelecionarChamadosEmAberto();
+
+        else if (statusSelecionado == "concluidos")
+            chamados = repositorioChamado.SelecionarChamadosConcluidos();
+        else
+            chamados = repositorioChamado.SelecionarTodos();
+
 
         List<ListarChamadoViewModel> listarVm = new List<ListarChamadoViewModel>();
 
@@ -41,6 +52,8 @@ public class ChamadoController : Controller
             );
             listarVm.Add(vm);
         }
+        ViewBag.StatusSelecionado = statusSelecionado;
+
         return View(listarVm);
     }
     [HttpGet]
@@ -105,7 +118,8 @@ public class ChamadoController : Controller
             chamado.Id,
             chamado.Titulo,
             chamado.Descricao,
-            chamado.Equipamento.Id
+            chamado.Equipamento.Id,
+            chamado.EstaConcluido
         );
 
         ViewBag.Equipamentos = CarregarEquipamentos();
@@ -131,10 +145,41 @@ public class ChamadoController : Controller
         }
         Chamado chamadoAtt = new(
             editarChamado.Titulo,
-            e,
+            e!,
+            editarChamado.EstaConcluido,
             editarChamado.Descricao
         );
         repositorioChamado.Editar(editarChamado.Id, chamadoAtt);
+
+        return RedirectToAction(nameof(Listar));
+    }
+    [HttpGet]
+    public ActionResult Excluir(string id)
+    {
+        Chamado? c = repositorioChamado.SelecionarPorId(id);
+
+        if (c == null)
+            return RedirectToAction(nameof(Listar));
+
+        ExcluirChamadoViewModel excluirChamadoViewModel = new(
+            c.Id,
+            c.Titulo,
+            c.Descricao,
+            c.Equipamento.Nome,
+            c.DataAbertura,
+            c.TempoDecorrido,
+            c.EstaConcluido
+        );
+
+        return View(excluirChamadoViewModel);
+    }
+    [HttpPost]
+    public ActionResult Excluir(ExcluirChamadoViewModel excluirVm)
+    {
+        Chamado? chamado = repositorioChamado.SelecionarPorId(excluirVm.Id);
+
+        if (chamado != null)
+            repositorioChamado.Excluir(chamado);
 
         return RedirectToAction(nameof(Listar));
     }

@@ -30,5 +30,15 @@ public record EditarChamadoViewModel(
     [StringLength(500, MinimumLength = 2,ErrorMessage = "O campo Descricao deve ter entre 2 a 500 caracteres")]
     string? Descricao,
     [Required(ErrorMessage = "O campo Equipamento deve ser preenchido!")]
-    string EquipamentoId
+    string EquipamentoId,
+    bool EstaConcluido
+);
+public record ExcluirChamadoViewModel(
+    string Id,
+    string Titulo,
+    string? Descricao,
+    string Equipamento,
+    DateTime DataAbertura,
+    int TempoDecorrido,
+    bool EstaConcluido
 );

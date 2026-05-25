@@ -24,6 +24,13 @@
         </select>
         <span asp-validation-for="EquipamentoId" class="formulario-validacao-campo"></span>
     </div>
+    <div class="formulario-campo">
+        <label asp-for="EstaConcluido">Status</label>
+        <label>
+            <input asp-for="EstaConcluido" type="checkbox">
+            Concluir Chamado
+        </label>
+    </div>
     <button type="submit">Confirmar</button>
 
 </form>

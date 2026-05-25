@@ -125,4 +125,21 @@ td a{
   font-size: 0.9rem;
   font-weight: 600;
 }
-
+.filtros-listagem{
+  display: flex;
+  gap: 10px;
+  margin: 18px 8px;
+}
+.filtros-listagem a{
+  border: 1px solid #77A1D3;
+  border-radius: 100vmax;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 22px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.filtros-listagem a.ativo{
+  background-color: #307ddc;
+  color: white;
+}

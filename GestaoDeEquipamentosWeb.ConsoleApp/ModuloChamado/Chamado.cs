@@ -22,12 +22,18 @@ public class Chamado : EntidadeBase<Chamado>
     }
 
     public Chamado() { }
-
     public Chamado(string titulo, Equipamento equipamento, string? descricao = null) : this()
     {
         Titulo = titulo;
         Equipamento = equipamento;
         Descricao = descricao;
+    }
+    public Chamado(string titulo, Equipamento equipamento, bool estaConcluido, string? descricao = null) : this()
+    {
+        Titulo = titulo;
+        Equipamento = equipamento;
+        Descricao = descricao;
+        EstaConcluido = estaConcluido;
     }
 
     public void Concluir()
@@ -53,5 +59,6 @@ public class Chamado : EntidadeBase<Chamado>
         Titulo = entidadeAtualizada.Titulo;
         Descricao = entidadeAtualizada.Descricao;
         Equipamento = entidadeAtualizada.Equipamento;
+        EstaConcluido = entidadeAtualizada.EstaConcluido;
     }
 }

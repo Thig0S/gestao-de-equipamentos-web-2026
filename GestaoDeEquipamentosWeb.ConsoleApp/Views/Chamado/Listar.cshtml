@@ -5,7 +5,11 @@
 @model List<ListarChamadoViewModel>
 
 <a class="btn-grad" asp-action="Cadastrar">Cadastrar Chamado</a>
-
+<div class="filtros-listagem">
+    <a asp-action="Listar" class="@(string.IsNullOrEmpty(ViewBag.StatusSelecionado) ? "ativo" : "") ">Todos</a>
+    <a asp-action="Listar" asp-route-status="em-aberto"class="@(ViewBag.StatusSelecionado == "em-aberto" ? "ativo" : "")">Em aberto</a>
+    <a asp-action="Listar" asp-route-status="concluidos" class="@(ViewBag.StatusSelecionado) == " concluidos" ? "ativo" : "" )">Concluidos</a>
+</div>
 <table>
     <thead>
         <tr>
@@ -23,7 +27,7 @@
         @foreach (ListarChamadoViewModel c in Model)
         {
             <tr>
-                <td data-label="ID">@c.Id</td>
+                <td data-label=" ID">@c.Id</td>
                 <td data-label="Titulo">@c.Titulo</td>
                 <td data-label="Equipamento">@c.Equipamento</td>
                 <td data-label="Data de Abertura">@c.DataAbertura.ToString("dd/MM/yyyy")</td>
